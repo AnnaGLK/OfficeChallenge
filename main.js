@@ -16,15 +16,15 @@ class Employee {
   // that pushes 10 new documents to the office's documents array.
 
   //A function that pushes 10 new documents to the office's documents array. - See Office object a head.
-work(office = this.office) {
-  if (!office || !office.documents) {
-    throw new Error("Office not set for employee: " + this.name);
+  work(office = this.office) {
+    if (!office || !office.documents) {
+      throw new Error("Office not set for employee: " + this.name);
+    }
+    for (let i = 0; i < 10; i++) {
+      const doc = new Document(this.name);
+      office.documents.push(doc);
+    }
   }
-  for (let i = 0; i < 10; i++) {
-    const doc = new Document(this.name);
-    office.documents.push(doc);
-  }
-}
 }
 
 //Manager class should create an object with an attribute called - name and it should be initialized in the constructor
@@ -81,13 +81,12 @@ class Office {
   }
 
   addEmployee(employeeName) {
-  const newEmployee = new Employee(employeeName, this); // Set office!
-  // Add to office via manager or separate array if required by spec
-  return newEmployee;
-}
+    const newEmployee = new Employee(employeeName, this); // Set office!
+    // Add to office via manager or separate array if required by spec
+    return newEmployee;
+  }
 
   startWorkDay() {
     this.managers.forEach((manager) => manager.askEmployeesToWork());
   }
 }
-
